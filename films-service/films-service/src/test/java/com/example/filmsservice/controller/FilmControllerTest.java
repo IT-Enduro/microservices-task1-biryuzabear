@@ -69,15 +69,16 @@ class FilmControllerTest {
 
         when(filmService.findAll(pageable)).thenReturn(pageDTO);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/films")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/films")
                         .param("page","1")
                         .param("pageSize", "10"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", hasSize(2)))
-                .andExpect(jsonPath("$.content[0].name", is(filmDTO1.getName())).exists())
-                .andExpect(jsonPath("$.content[0].filmUid", is(filmDTO1.getFilmUid())).exists())
-                .andExpect(jsonPath("$.content[1].name", is(filmDTO2.getName())).exists())
-                .andExpect(jsonPath("$.content[1].filmUid", is(filmDTO2.getFilmUid())).exists());;
-
+                .andExpect(jsonPath("$.items", hasSize(2)))
+                .andExpect(jsonPath("$.items[0].name", is(filmDTO1.getName())).exists())
+                .andExpect(jsonPath("$.items[0].filmUid", is(filmDTO1.getFilmUid())).exists())
+                .andExpect(jsonPath("$.items[1].name", is(filmDTO2.getName())).exists())
+                .andExpect(jsonPath("$.items[1].filmUid", is(filmDTO2.getFilmUid())).exists());;
     }
+
+
 }
