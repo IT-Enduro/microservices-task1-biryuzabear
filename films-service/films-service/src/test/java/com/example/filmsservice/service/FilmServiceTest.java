@@ -4,8 +4,6 @@ import com.example.filmsservice.dto.FilmDTO;
 import com.example.filmsservice.model.Film;
 import com.example.filmsservice.repository.FilmRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
