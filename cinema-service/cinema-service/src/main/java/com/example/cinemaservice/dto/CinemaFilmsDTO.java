@@ -1,15 +1,27 @@
 package com.example.cinemaservice.dto;
 
+import com.example.cinemaservice.model.Cinema;
+import com.example.cinemaservice.model.FilmSession;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CinemaFilmDTO {
+public class CinemaFilmsDTO {
     private UUID cinemaUid;
     private String name;
     private String address;
     private List<FilmDTO> films;
 
+    public CinemaFilmsDTO() {
+    }
+
+    public CinemaFilmsDTO(Cinema cinema, List<FilmDTO> films) {
+        this.cinemaUid = cinema.getCinemaUid();
+        this.name = cinema.getName();
+        this.address = cinema.getAddress();
+        this.films = films;
+    }
 
     public UUID getCinemaUid() {
         return cinemaUid;
@@ -47,7 +59,7 @@ public class CinemaFilmDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CinemaFilmDTO that = (CinemaFilmDTO) o;
+        CinemaFilmsDTO that = (CinemaFilmsDTO) o;
         return Objects.equals(cinemaUid, that.cinemaUid) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(films, that.films);
     }
 
