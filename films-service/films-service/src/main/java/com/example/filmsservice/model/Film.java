@@ -1,6 +1,7 @@
 package com.example.filmsservice.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,13 +15,14 @@ public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    //    @GeneratedValue(strategy = GenerationType.UUID)
-//    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID filmUid = UUID.randomUUID();
+    @Column(nullable = false)
     private String name;
+    @Column(precision = 8, scale = 2, nullable = false, columnDefinition = "NUMERIC(8, 2) DEFAULT 10 CHECK (rating BETWEEN 0 AND 10)")
     private double rating;
     private String director;
     private String producer;
+    @Column(nullable = false)
     private String genre;
 
     public Integer getId() {
