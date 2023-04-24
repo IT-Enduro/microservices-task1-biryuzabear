@@ -4,7 +4,7 @@ import com.example.filmsservice.model.Film;
 
 import java.util.Objects;
 
-public class FilmDTO {
+public class FilmResponse {
 
     private String filmUid;
     private String name;
@@ -13,10 +13,10 @@ public class FilmDTO {
     private String producer;
     private String genre;
 
-    public FilmDTO() {
+    public FilmResponse() {
     }
 
-    public FilmDTO(Film film) {
+    public FilmResponse(Film film) {
         this.filmUid = film.getFilmUid().toString();
         this.name = film.getName();
         this.rating = film.getRating();
@@ -77,8 +77,8 @@ public class FilmDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FilmDTO filmDTO = (FilmDTO) o;
-        return Double.compare(filmDTO.rating, rating) == 0 && Objects.equals(filmUid, filmDTO.filmUid) && Objects.equals(name, filmDTO.name) && Objects.equals(director, filmDTO.director) && Objects.equals(producer, filmDTO.producer) && Objects.equals(genre, filmDTO.genre);
+        FilmResponse filmResponse = (FilmResponse) o;
+        return Double.compare(filmResponse.rating, rating) == 0 && Objects.equals(filmUid, filmResponse.filmUid) && Objects.equals(name, filmResponse.name) && Objects.equals(director, filmResponse.director) && Objects.equals(producer, filmResponse.producer) && Objects.equals(genre, filmResponse.genre);
     }
 
     @Override

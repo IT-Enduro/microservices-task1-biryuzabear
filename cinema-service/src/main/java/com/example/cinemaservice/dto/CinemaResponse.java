@@ -5,15 +5,15 @@ import com.example.cinemaservice.model.Cinema;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CinemaDTO {
+public class CinemaResponse {
     private UUID cinemaUid;
     private String name;
     private String address;
 
-    public CinemaDTO() {
+    public CinemaResponse() {
     }
 
-    public CinemaDTO(Cinema cinema) {
+    public CinemaResponse(Cinema cinema) {
         this.cinemaUid = cinema.getCinemaUid();
         this.address = cinema.getAddress();
         this.name = cinema.getName();
@@ -47,8 +47,8 @@ public class CinemaDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CinemaDTO cinemaDTO = (CinemaDTO) o;
-        return Objects.equals(cinemaUid, cinemaDTO.cinemaUid) && Objects.equals(name, cinemaDTO.name) && Objects.equals(address, cinemaDTO.address);
+        CinemaResponse cinemaResponse = (CinemaResponse) o;
+        return Objects.equals(cinemaUid, cinemaResponse.cinemaUid) && Objects.equals(name, cinemaResponse.name) && Objects.equals(address, cinemaResponse.address);
     }
 
     @Override

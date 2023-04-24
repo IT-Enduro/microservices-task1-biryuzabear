@@ -2,13 +2,13 @@ package com.example.cinemaservice.dto;
 
 import java.util.Objects;
 
-public class MessageDTO {
+public class MessageResponse {
     private String message;
 
-    public MessageDTO() {
+    public MessageResponse() {
     }
 
-    public MessageDTO(String message) {
+    public MessageResponse(String message) {
         this.message = message;
     }
 
@@ -24,7 +24,7 @@ public class MessageDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MessageDTO that = (MessageDTO) o;
+        MessageResponse that = (MessageResponse) o;
         return Objects.equals(message, that.message);
     }
 

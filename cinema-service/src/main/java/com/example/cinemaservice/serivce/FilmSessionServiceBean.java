@@ -1,6 +1,6 @@
 package com.example.cinemaservice.serivce;
 
-import com.example.cinemaservice.dto.IsPossibleToBuyRequestRequest;
+import com.example.cinemaservice.dto.IsPossibleToBuyRequest;
 import com.example.cinemaservice.model.FilmSession;
 import com.example.cinemaservice.repository.CinemaRepository;
 import com.example.cinemaservice.repository.FilmSessionRepository;
@@ -16,8 +16,8 @@ public class FilmSessionServiceBean implements FilmSessionService {
     final CinemaRepository cinemaRepository;
 
     @Override
-    public boolean isPossibleToBuyTicket(IsPossibleToBuyRequestRequest isPossibleToBuyRequestRequest) {
-        FilmSession filmSession = getFilmSession(isPossibleToBuyRequestRequest);
+    public boolean isPossibleToBuyTicket(IsPossibleToBuyRequest isPossibleToBuyRequest) {
+        FilmSession filmSession = getFilmSession(isPossibleToBuyRequest);
         if (filmSession == null || filmSession.getBookedSeats() >= filmSession.getTotalSeats()) {
             return false;
         }
@@ -26,10 +26,10 @@ public class FilmSessionServiceBean implements FilmSessionService {
         return true;
     }
 
-    private FilmSession getFilmSession(IsPossibleToBuyRequestRequest isPossibleToBuyRequestRequest) {
-        FilmSession filmSession = filmSessionRepository.findFilmSessionsByCinemaAndFilmUidAndDate(cinemaRepository.findCinemaByCinemaUid(isPossibleToBuyRequestRequest.getCinemaUid()),
-                isPossibleToBuyRequestRequest.getFilmUid(),
-                Timestamp.valueOf(isPossibleToBuyRequestRequest.getDate()));
+    private FilmSession getFilmSession(IsPossibleToBuyRequest isPossibleToBuyRequest) {
+        FilmSession filmSession = filmSessionRepository.findFilmSessionsByCinemaAndFilmUidAndDate(cinemaRepository.findCinemaByCinemaUid(isPossibleToBuyRequest.getCinemaUid()),
+                isPossibleToBuyRequest.getFilmUid(),
+                Timestamp.valueOf(isPossibleToBuyRequest.getDate()));
         return filmSession;
     }
 

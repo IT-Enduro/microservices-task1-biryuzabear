@@ -1,21 +1,19 @@
 package com.example.cinemaservice.serivce;
 
-import com.example.cinemaservice.dto.CinemaDTO;
-import com.example.cinemaservice.dto.CinemaFilmsDTO;
-import com.example.cinemaservice.dto.FilmDTO;
-import com.example.cinemaservice.dto.PageFilmDTO;
+import com.example.cinemaservice.dto.CinemaResponse;
+import com.example.cinemaservice.dto.CinemaFilmsResponse;
+import com.example.cinemaservice.dto.FilmResponse;
+import com.example.cinemaservice.dto.PageFilmResponse;
 import com.example.cinemaservice.model.Cinema;
 import com.example.cinemaservice.model.FilmSession;
 import com.example.cinemaservice.repository.CinemaRepository;
 import com.example.cinemaservice.repository.FilmSessionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -43,12 +41,12 @@ public class CinemaServiceBean implements CinemaService {
     }
 
     @Override
-    public Page<CinemaDTO> findAll(Pageable pageable) {
-        return cinemaRepository.findAll(pageable).map(CinemaDTO::new);
+    public Page<CinemaResponse> findAll(Pageable pageable) {
+        return cinemaRepository.findAll(pageable).map(CinemaResponse::new);
     }
 
     @Override
-    public CinemaFilmsDTO getFilmSessionsByCinemaUid(UUID cinemaUid) {
+    public CinemaFilmsResponse getFilmSessionsByCinemaUid(UUID cinemaUid) {
         Cinema cinema = cinemaRepository.findCinemaByCinemaUid(cinemaUid);
         if(cinema == null)
             return null;
@@ -63,11 +61,11 @@ public class CinemaServiceBean implements CinemaService {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
-        PageFilmDTO films = restTemplate.getForObject(GET_FILMS_URL, PageFilmDTO.class);
-        List<FilmDTO> filmList = films.getItems().stream()
-                .filter(filmDTO -> distinctByFilms.stream()
-                        .anyMatch(session -> session.getFilmUid().toString().equals(filmDTO.getFilmUid())))
+        PageFilmResponse films = restTemplate.getForObject(GET_FILMS_URL, PageFilmResponse.class);
+        List<FilmResponse> filmList = films.getItems().stream()
+                .filter(filmResponse -> distinctByFilms.stream()
+                        .anyMatch(session -> session.getFilmUid().toString().equals(filmResponse.getFilmUid())))
                 .toList();
-        return new CinemaFilmsDTO(cinema, filmList);
+        return new CinemaFilmsResponse(cinema, filmList);
     }
 }

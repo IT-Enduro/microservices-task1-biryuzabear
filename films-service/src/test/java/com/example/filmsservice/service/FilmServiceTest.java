@@ -1,6 +1,6 @@
 package com.example.filmsservice.service;
 
-import com.example.filmsservice.dto.FilmDTO;
+import com.example.filmsservice.dto.FilmResponse;
 import com.example.filmsservice.model.Film;
 import com.example.filmsservice.repository.FilmRepository;
 import org.junit.jupiter.api.Test;
@@ -39,29 +39,29 @@ class FilmServiceTest {
         film2.setProducer("Albert S. Ruddy");
         film2.setGenre("Crime, Drama");
 
-        FilmDTO filmDTO1 = new FilmDTO();
-        filmDTO1.setFilmUid("123e4567-e89b-12d3-a456-426655440000");
-        filmDTO1.setName("The Shawshank Redemption");
-        filmDTO1.setRating(9.3);
-        filmDTO1.setDirector("Frank Darabont");
-        filmDTO1.setProducer("Niki Marvin");
-        filmDTO1.setGenre("Drama");
+        FilmResponse filmResponse1 = new FilmResponse();
+        filmResponse1.setFilmUid("123e4567-e89b-12d3-a456-426655440000");
+        filmResponse1.setName("The Shawshank Redemption");
+        filmResponse1.setRating(9.3);
+        filmResponse1.setDirector("Frank Darabont");
+        filmResponse1.setProducer("Niki Marvin");
+        filmResponse1.setGenre("Drama");
 
-        FilmDTO filmDTO2 = new FilmDTO();
-        filmDTO2.setFilmUid("223e4567-e89b-12d3-a456-426655440000");
-        filmDTO2.setName("The Godfather");
-        filmDTO2.setRating(9.2);
-        filmDTO2.setDirector("Francis Ford Coppola");
-        filmDTO2.setProducer("Albert S. Ruddy");
-        filmDTO2.setGenre("Crime, Drama");
+        FilmResponse filmResponse2 = new FilmResponse();
+        filmResponse2.setFilmUid("223e4567-e89b-12d3-a456-426655440000");
+        filmResponse2.setName("The Godfather");
+        filmResponse2.setRating(9.2);
+        filmResponse2.setDirector("Francis Ford Coppola");
+        filmResponse2.setProducer("Albert S. Ruddy");
+        filmResponse2.setGenre("Crime, Drama");
 
-        List<FilmDTO> filmDTOList = new ArrayList<>();
-        filmDTOList.add(filmDTO1);
-        filmDTOList.add(filmDTO2);
+        List<FilmResponse> filmResponseList = new ArrayList<>();
+        filmResponseList.add(filmResponse1);
+        filmResponseList.add(filmResponse2);
 
         PageRequest pageRequest = PageRequest.of(1, 10);
 
-        Page<FilmDTO> pageDTO = new PageImpl<>(filmDTOList, pageRequest, filmDTOList.size());
+        Page<FilmResponse> pageDTO = new PageImpl<>(filmResponseList, pageRequest, filmResponseList.size());
 
         List<Film> filmList = new ArrayList<>();
         filmList.add(film1);

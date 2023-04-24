@@ -1,19 +1,19 @@
-package com.example.cinemaservice.dto;
+package com.example.filmsservice.dto;
 
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-public class PageDTO<T> {
+public class PageResponse<T> {
     private List<T> items;
     private int page;
     private int pageSize;
     private int totalElements;
 
-    public PageDTO() {
+    public PageResponse() {
     }
 
-    public PageDTO(Page<T> page) {
+    public PageResponse(Page<T> page) {
         this.page = page.getNumber();
         this.pageSize = page.getSize();
         this.totalElements = page.getTotalPages();

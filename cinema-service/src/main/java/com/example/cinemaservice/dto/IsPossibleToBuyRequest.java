@@ -3,7 +3,7 @@ package com.example.cinemaservice.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class IsPossibleToBuyRequestRequest {
+public class IsPossibleToBuyRequest {
     private UUID cinemaUid;
     private UUID filmUid;
     private LocalDateTime date;

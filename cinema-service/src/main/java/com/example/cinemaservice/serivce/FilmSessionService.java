@@ -1,7 +1,7 @@
 package com.example.cinemaservice.serivce;
 
-import com.example.cinemaservice.dto.IsPossibleToBuyRequestRequest;
+import com.example.cinemaservice.dto.IsPossibleToBuyRequest;
 
 public interface FilmSessionService {
-    boolean isPossibleToBuyTicket(IsPossibleToBuyRequestRequest isPossibleToBuyRequestRequest);
+    boolean isPossibleToBuyTicket(IsPossibleToBuyRequest isPossibleToBuyRequest);
 }

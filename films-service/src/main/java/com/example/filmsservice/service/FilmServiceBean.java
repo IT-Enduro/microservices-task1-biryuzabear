@@ -1,8 +1,7 @@
 package com.example.filmsservice.service;
 
-import com.example.filmsservice.dto.FilmDTO;
+import com.example.filmsservice.dto.FilmResponse;
 import com.example.filmsservice.repository.FilmRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,8 @@ public class FilmServiceBean implements FilmService {
     }
 
     @Override
-    public Page<FilmDTO> findAll(Pageable pageable) {
-        return filmRepository.findAll(pageable).map(FilmDTO::new);
+    public Page<FilmResponse> findAll(Pageable pageable) {
+        return filmRepository.findAll(pageable).map(FilmResponse::new);
     }
 
 }
