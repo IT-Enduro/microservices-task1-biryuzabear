@@ -1,8 +1,8 @@
 package com.example.ticketsservice.service;
 
 import com.example.ticketsservice.dto.IsPossibleToBuyRequest;
-import com.example.ticketsservice.dto.TicketResponse;
 import com.example.ticketsservice.dto.TicketPurchaseRequest;
+import com.example.ticketsservice.dto.TicketResponse;
 import com.example.ticketsservice.model.Ticket;
 import com.example.ticketsservice.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.Timestamp;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -63,12 +62,10 @@ public class TicketServiceBean implements TicketService {
     @Override
     public Boolean returnTicket(UUID ticketUid, String userName) {
         Ticket ticket = ticketRepository.findByTicketUid(ticketUid);
-        if(ticket == null){
+        if (ticket == null) {
             return null;
         }
-        LocalDateTime now = LocalDateTime.now();
-        long durationHours = Duration.between(ticket.getDate().toInstant(), now).toHours();
-        Boolean isPossibleToReturn = ticket.getDate().before(Timestamp.valueOf(now)) && durationHours > 1;
+        Boolean isPossibleToReturn = (Timestamp.valueOf(LocalDateTime.now()).getTime() - ticket.getDate().getTime()) / 3600 / 1000 < -1;
         if (isPossibleToReturn) {
             ticket.setStatus("CANCELED");
             ticketRepository.save(ticket);

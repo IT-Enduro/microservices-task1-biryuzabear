@@ -27,7 +27,7 @@ public class FilmSessionServiceBean implements FilmSessionService {
     }
 
     private FilmSession getFilmSession(IsPossibleToBuyRequestRequest isPossibleToBuyRequestRequest) {
-        FilmSession filmSession = filmSessionRepository.findFilmSessionsByCinemaAndFilmUidAndDateAnd(cinemaRepository.findCinemaByCinemaUid(isPossibleToBuyRequestRequest.getCinemaUid()),
+        FilmSession filmSession = filmSessionRepository.findFilmSessionsByCinemaAndFilmUidAndDate(cinemaRepository.findCinemaByCinemaUid(isPossibleToBuyRequestRequest.getCinemaUid()),
                 isPossibleToBuyRequestRequest.getFilmUid(),
                 Timestamp.valueOf(isPossibleToBuyRequestRequest.getDate()));
         return filmSession;

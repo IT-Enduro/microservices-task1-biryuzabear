@@ -12,5 +12,5 @@ import java.util.UUID;
 @Repository
 public interface FilmSessionRepository extends JpaRepository<FilmSession, Integer> {
     List<FilmSession> findFilmSessionsByCinema(Cinema cinema);
-    FilmSession findFilmSessionsByCinemaAndFilmUidAndDateAnd(Cinema cinema, UUID filmUid, Timestamp date);
+    FilmSession findFilmSessionsByCinemaAndFilmUidAndDate(Cinema cinema, UUID filmUid, Timestamp date);
 }
