@@ -4,51 +4,6 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-public class PageFilmDTO {
-    private List<FilmDTO> items;
-    private int page;
-    private int pageSize;
-    private int totalElements;
+public class PageFilmDTO extends PageDTO<FilmDTO>{
 
-    public PageFilmDTO() {
-    }
-
-    public PageFilmDTO(Page<FilmDTO> page) {
-        this.page = page.getNumber();
-        this.pageSize = page.getSize();
-        this.totalElements = page.getTotalPages();
-        this.items = page.getContent();
-    }
-
-    public List<FilmDTO> getItems() {
-        return items;
-    }
-
-    public void setItems(List<FilmDTO> items) {
-        this.items = items;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getTotalElements() {
-        return totalElements;
-    }
-
-    public void setTotalElements(int totalElements) {
-        this.totalElements = totalElements;
-    }
 }

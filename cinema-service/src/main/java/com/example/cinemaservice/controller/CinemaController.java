@@ -18,16 +18,17 @@ import java.util.UUID;
 @RequestMapping("/api/v1")
 public class CinemaController {
     private final CinemaServiceBean cinemaServiceBean;
+
     public CinemaController(CinemaServiceBean cinemaServiceBean) {
         this.cinemaServiceBean = cinemaServiceBean;
     }
 
     @GetMapping("/cinema")
     public ResponseEntity<PageDTO<CinemaDTO>> getAllFilms(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize
     ) {
-        Pageable pageable = PageRequest.of(page, pageSize);
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
         Page<CinemaDTO> cinemaPage = cinemaServiceBean.findAll(pageable);
 
         return ResponseEntity.ok().body(new PageDTO<>(cinemaPage));
@@ -36,9 +37,9 @@ public class CinemaController {
     @GetMapping("/cinema/{cinemaUid}/films")
     public ResponseEntity<Object> getAllFilms(@PathVariable UUID cinemaUid) {
         CinemaFilmsDTO cinemaFilms = cinemaServiceBean.getFilmSessionsByCinemaUid(cinemaUid);
-        if(cinemaFilms == null){
+        if (cinemaFilms == null) {
             return new ResponseEntity<>("Не найдено", HttpStatus.NOT_FOUND);
-        } else{
+        } else {
             return ResponseEntity.ok().body(cinemaFilms);
         }
     }

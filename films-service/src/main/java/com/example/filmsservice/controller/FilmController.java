@@ -16,16 +16,17 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class FilmController {
     private final FilmService filmService;
+
     public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
 
     @GetMapping("/films")
     public ResponseEntity<PageDTO<FilmDTO>> getAllFilms(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize
     ) {
-        Pageable pageable = PageRequest.of(page, pageSize);
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
         Page<FilmDTO> filmPage = filmService.findAll(pageable);
 
         return ResponseEntity.ok().body(new PageDTO<>(filmPage));
