@@ -13,22 +13,16 @@ public class FilmSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "session_uid", nullable = false)
-    private UUID sessionUid;
-
+    private UUID sessionUid = UUID.randomUUID();
     @Column(nullable = false)
     private UUID filmUid;
-
     @Column(nullable = false)
     private Integer totalSeats;
-
     @Column(nullable = false, columnDefinition = "INT NOT NULL DEFAULT 0 CHECK (booked_seats < total_seats)")
     private Integer bookedSeats;
-
     @Column(nullable = false)
     private Timestamp date;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Cinema cinema;

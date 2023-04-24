@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '17'
 
 repositories {
@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {
