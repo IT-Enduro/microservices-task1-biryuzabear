@@ -50,6 +50,8 @@ public class CinemaServiceBean implements CinemaService {
     @Override
     public CinemaFilmsDTO getFilmSessionsByCinemaUid(UUID cinemaUid) {
         Cinema cinema = cinemaRepository.findCinemaByCinemaUid(cinemaUid);
+        if(cinema == null)
+            return null;
         List<FilmSession> sessions = filmSessionRepository.findFilmSessionsByCinema(cinema);
         List<FilmSession> distinctByFilms = sessions
                 .stream()

@@ -2,6 +2,7 @@ package com.example.cinemaservice.controller;
 
 import com.example.cinemaservice.dto.CinemaDTO;
 import com.example.cinemaservice.dto.CinemaFilmsDTO;
+import com.example.cinemaservice.dto.MessageDTO;
 import com.example.cinemaservice.dto.PageDTO;
 import com.example.cinemaservice.serivce.CinemaServiceBean;
 import org.springframework.data.domain.Page;
@@ -38,7 +39,7 @@ public class CinemaController {
     public ResponseEntity<Object> getAllFilms(@PathVariable UUID cinemaUid) {
         CinemaFilmsDTO cinemaFilms = cinemaServiceBean.getFilmSessionsByCinemaUid(cinemaUid);
         if (cinemaFilms == null) {
-            return new ResponseEntity<>("Не найдено", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new MessageDTO("Не найдено"), HttpStatus.NOT_FOUND);
         } else {
             return ResponseEntity.ok().body(cinemaFilms);
         }
