@@ -23,10 +23,10 @@ jobs:
 
       - name: Run containers
         timeout-minutes: 5
-#        env:
-#          WAIT_PORTS: 8080,8070,8060
-#        run: |
-#          docker compose up -d
+        env:
+          WAIT_PORTS: 8080,8070,8060
+        run: |
+          docker compose up -d
 #          ./scripts/wait-script.sh
 
       - name: Run API Tests
