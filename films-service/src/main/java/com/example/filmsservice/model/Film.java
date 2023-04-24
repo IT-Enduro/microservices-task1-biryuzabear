@@ -1,20 +1,18 @@
 package com.example.filmsservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(indexes = @Index(name = "udx_films_film_uid", columnList = "film_uid", unique = true))
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+    @Column(name = "film_uid")
     private UUID filmUid = UUID.randomUUID();
     @Column(nullable = false)
     private String name;

@@ -1,18 +1,17 @@
 package com.example.cinemaservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(indexes = @Index(name = "udx_cinema_cinema_uid", columnList = "cinema_uid", unique = true))
 public class Cinema {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+    @Column(name = "cinema_uid")
     private UUID cinemaUid = UUID.randomUUID();
     private String name;
     private String address;

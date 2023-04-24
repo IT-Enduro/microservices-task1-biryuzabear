@@ -7,13 +7,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(indexes = @Index(name = "udx_film_session_session_uid", columnList = "session_uid", unique = true))
 public class FilmSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "session_uid", nullable = false)
     private UUID sessionUid;
 
     @Column(nullable = false)
